@@ -1,3 +1,7 @@
+#pip install git+https://github.com/DLR-RM/stable-baselines3
+#pip install Shimmy
+#pip install gym
+
 import pandas as pd
 import numpy as np
 import gym
