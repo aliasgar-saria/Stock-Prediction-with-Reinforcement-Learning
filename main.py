@@ -41,7 +41,7 @@ df_stock = df_stock.sort_values('Date')
 df_stock = df_stock.drop(columns=['Date'])
 
 env = StockTradingEnv(df_stock)
-model = A2C('MlpPolicy', env, verbose=1)python
+model = A2C('MlpPolicy', env, verbose=1)
 model.learn(total_timesteps=10000)
 
 # Let's assume df_new_stock is the new data
