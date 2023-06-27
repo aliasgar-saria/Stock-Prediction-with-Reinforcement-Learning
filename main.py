@@ -37,18 +37,18 @@ class StockTradingEnv(gym.Env):
         self.current_step = 0
         return self.df.loc[self.current_step, :].values
 
-# Let's assume df_stock is your data frame
+# Assuming df_stock is your data frame
 df_stock = pd.read_csv('stock_data.csv')
 df_stock = df_stock.sort_values('Date')
 
-# Drop the 'Date' column
+# Dropping the 'Date' column
 df_stock = df_stock.drop(columns=['Date'])
 
 env = StockTradingEnv(df_stock)
 model = A2C('MlpPolicy', env, verbose=1)
 model.learn(total_timesteps=10000)
 
-# Let's assume df_new_stock is the new data
+# Assuming df_new_stock is the new data
 df_new_stock = pd.DataFrame({
     'Open': [163.82],
     'High': [162.22],
@@ -57,13 +57,11 @@ df_new_stock = pd.DataFrame({
     'Volume': [20726900]
 }, index=[0])
 
-# Reset the environment with the new data
+# Resetting the environment with the new data
 env_new_data = StockTradingEnv(df_new_stock)
 obs = env_new_data.reset()
 
-# Get the model's prediction
+# Getting the model's prediction and printing
 action, _states = model.predict(obs)
 action_dict = {0: "Hold", 1: "Buy", 2: "Sell"}
-
-# Print the action
 print(action_dict[int(action)])
